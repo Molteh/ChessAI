@@ -15,13 +15,16 @@ class Piece {
         if (board.is_check()) {
             //check that move out of check
         }
+        // check if it the right piece color
         if(this.isWhite !== board.white_turn)
             return false;
+        // check if moves within board's boundaries
         if (!this.check_move_pattern(x, y, board) || !board.is_in_boundaries(x, y))
             return false;
         let piece_at_position = board.getPieceAt(x, y);
         if (piece_at_position == null)
             return true;
+        // check whether it would collide with a friendly piece
         return piece_at_position.is_white() !== this.isWhite;
     }
 
@@ -40,6 +43,10 @@ class Piece {
     }
 
     clone() {
+
+    }
+
+    generate_moves(board) {
 
     }
 

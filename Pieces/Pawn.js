@@ -42,4 +42,14 @@ class Pawn extends Piece {
         clone.has_moved = this.has_moved;
         return clone;
     }
+
+    generate_moves(board) {
+        let moves = [];
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 2; j++) {
+                if(this.can_move(this.x + j, this.y + i, board ))
+                    moves.push(this.x + j, this.y + i);
+            }
+        }
+    }
 }

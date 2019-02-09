@@ -21,4 +21,23 @@ class Bishop extends Piece {
     clone() {
         return new Bishop(this.x, this.y, this.isWhite);
     }
+
+    generate_moves(board) {
+        let moves = [];
+        for (let i = 0; i < 8 ; i++) {
+            if(this.can_move(this.x + i, this.y + i, board)) { // aggiungere il controllo che non esca dalla board o no?
+                moves.push(new createVector(this.x + i, this.y + i));
+            }
+            if(this.can_move(this.x - i, this.y - i, board)) { // aggiungere il controllo che non esca dalla board
+                moves.push(new createVector(this.x - i, this.y - i));
+            }
+            if(this.can_move(this.x + i, this.y - i, board)) { // aggiungere il controllo che non esca dalla board
+                moves.push(new createVector(this.x + i, this.y - i));
+            }
+            if(this.can_move(this.x - i, this.y + i, board)) { // aggiungere il controllo che non esca dalla board
+                moves.push(new createVector(this.x - i, this.y + i));
+            }
+        }
+        return moves;
+    }
 }

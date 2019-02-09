@@ -19,4 +19,6 @@ class Knight extends Piece {
         return new Knight(this.x, this.y, this.isWhite);
     }
 
+
+
 }
