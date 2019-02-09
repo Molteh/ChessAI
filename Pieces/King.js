@@ -97,13 +97,15 @@ class King extends Piece {
 
     generate_moves(board) {
         let moves = [];
-        for (let i = -1; i<=1; i++)
-            for(let j = -1; j<=1; j++){
+        for (let i = -1; i <= 1; i++)
+            for(let j = -1; j <= 1; j++){
                 if(i !==0 || j !== 0)
                     if(this.can_move(this.x + i, this.y + j, board)) { // aggiungere il controllo che non esca dalla board
                         moves.push(new createVector(this.x + i, this.y + j));
                     }
             }
+
+        console.log(this, moves);
         return moves;
     }
 }

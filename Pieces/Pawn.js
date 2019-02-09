@@ -45,11 +45,28 @@ class Pawn extends Piece {
 
     generate_moves(board) {
         let moves = [];
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 2; j++) {
-                if(this.can_move(this.x + j, this.y + i, board ))
-                    moves.push(this.x + j, this.y + i);
+
+        // Generate moves for white pawn
+        if(this.isWhite) {
+            for (let i = 0; i < 3; i++) {
+                for (let j = -1; j < 2; j++) {
+                    if (this.can_move(this.x + j, this.y - i, board))
+                        moves.push(new createVector(this.x + j, this.y - i));
+                }
             }
         }
+
+        // Generate moves for black pawn
+        else {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 2; j++) {
+                    if (this.can_move(this.x + j, this.y + i, board))
+                        moves.push(new createVector(this.x + j, this.y + i));
+                }
+            }
+        }
+
+        console.log(this, moves);
+        return moves;
     }
 }

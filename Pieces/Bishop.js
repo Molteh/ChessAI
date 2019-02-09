@@ -24,20 +24,24 @@ class Bishop extends Piece {
 
     generate_moves(board) {
         let moves = [];
-        for (let i = 0; i < 8 ; i++) {
-            if(this.can_move(this.x + i, this.y + i, board)) { // aggiungere il controllo che non esca dalla board o no?
-                moves.push(new createVector(this.x + i, this.y + i));
-            }
-            if(this.can_move(this.x - i, this.y - i, board)) { // aggiungere il controllo che non esca dalla board
-                moves.push(new createVector(this.x - i, this.y - i));
-            }
-            if(this.can_move(this.x + i, this.y - i, board)) { // aggiungere il controllo che non esca dalla board
-                moves.push(new createVector(this.x + i, this.y - i));
-            }
-            if(this.can_move(this.x - i, this.y + i, board)) { // aggiungere il controllo che non esca dalla board
-                moves.push(new createVector(this.x - i, this.y + i));
-            }
+        let min = Math.min(this.x, this.y);
+        let x = this.x - min;
+        let y = this.y - min;
+
+        // Generate moves from bottom right to top left diagonal
+        for (let j = 0; j < 8; j++) {
+            if(this.can_move(x + j, y + j, board))
+                moves.push(new createVector(x + j, y + j));
         }
+
+        y = this.y + min;
+
+        // Generate moves from bottom left to top right diagonal
+        for (let j = 0; j < 8; j++) {
+            if(this.can_move(x + j, y - j, board))
+                moves.push(new createVector(x + j, y + j));
+        }
+
         return moves;
     }
 }

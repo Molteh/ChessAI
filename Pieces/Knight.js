@@ -19,6 +19,26 @@ class Knight extends Piece {
         return new Knight(this.x, this.y, this.isWhite);
     }
 
+    generate_moves(board) {
+        let moves = [];
 
+        for (let i = -2; i < 3; i++) {
+            if(Math.abs(i) === 2) {
+                if(this.can_move(this.x + i, this.y + 1))
+                    moves.push(new createVector(x + i, y + 1));
+                if(this.can_move(this.x + i, this.y - 1))
+                    moves.push(new createVector(x + i, y - 1));
+            }
+            else if (Math.abs(i) === 1) {
+                if(this.can_move(this.x + i, this.y + 2))
+                    moves.push(new createVector(x + i, y + 2));
+                if(this.can_move(this.x + i, this.y - 2))
+                    moves.push(new createVector(x + i, y - 2));
+            }
+        }
+
+        console.log(this, moves);
+        return moves;
+    }
 
 }

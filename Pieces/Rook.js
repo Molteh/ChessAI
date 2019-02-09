@@ -36,4 +36,23 @@ class Rook extends Piece {
     clone() {
         return new Rook(this.x, this.y, this.isWhite);
     }
+
+    generate_moves(board) {
+        let moves = [];
+
+        // Generate horizontal moves
+        for (let i = 0; i < 8 ; i++) {
+            if (this.can_move(i, this.y, board))
+                moves.push( new createVector(i, this.y));
+        }
+
+        // Generate vertical moves
+        for (let i = 0; i < 8; i++) {
+            if (this.can_move(this.x, i, board))
+                moves.push(new createVector(this.x, i));
+        }
+
+        console.log(this, moves);
+        return moves;
+    }
 }

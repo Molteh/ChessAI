@@ -30,4 +30,41 @@ class Queen extends Piece {
         return new Queen(this.x, this.y, this.isWhite);
     }
 
+    generate_moves(board) {
+        let moves = [];
+
+        // Generate horizontal moves
+        for (let i = 0; i < 8 ; i++) {
+            if (this.can_move(i, this.y, board))
+                moves.push( new createVector(i, this.y));
+        }
+
+        // Generate vertical moves
+        for (let i = 0; i < 8; i++) {
+            if (this.can_move(this.x, i, board))
+                moves.push(new createVector(this.x, i));
+        }
+
+        let min = Math.min(this.x, this.y);
+        let x = this.x - min;
+        let y = this.y - min;
+
+        // Generate moves from bottom right to top left diagonal
+        for (let j = 0; j < 8; j++) {
+            if(this.can_move(x + j, y + j, board))
+                moves.push(new createVector(x + j, y + j));
+        }
+
+        y = this.y + min;
+
+        // Generate moves from bottom left to top right diagonal
+        for (let j = 0; j < 8; j++) {
+            if(this.can_move(x + j, y - j, board))
+                moves.push(new createVector(x + j, y + j));
+        }
+
+        console.log(this, moves);
+        return moves;
+    }
+
 }
