@@ -34,7 +34,9 @@ class Rook extends Piece {
     }
 
     clone() {
-        return new Rook(this.x, this.y, this.isWhite);
+        let clone = new Rook(this.x, this.y, this.isWhite);
+        clone.has_moved = this.has_moved;
+        return clone;
     }
 
     generate_moves(board) {

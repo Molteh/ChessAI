@@ -86,9 +86,9 @@ class Board {
     }
 
     is_in_boundaries(x, y) {
-        if (x<0 || x>this.board_length)
+        if (x<0 || x>=this.board_length)
             return false;
-        return !(y < 0 || y > this.board_height);
+        return !(y < 0 || y >= this.board_height);
 
     }
 

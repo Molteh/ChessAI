@@ -86,6 +86,15 @@ function html_elems_setup() {
 
     scoreLabel = createDiv("Score " + 0);
     checkLabel = createDiv("");
+
+    let testGenMoveButton = createButton('Generate moves');
+    testGenMoveButton.mousePressed(() => {
+        console.log(game.white_turn);
+        for (let i = 0; i < game.white_pieces.length ; i++) {
+            game.white_pieces[i].generate_moves(game);
+        }
+
+    })
 }
 
 
