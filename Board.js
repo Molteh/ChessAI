@@ -228,4 +228,21 @@ class Board {
 
         return clone;
     }
+
+    generate_boards() {
+
+        let boards = [];
+        let pieces = this.white_turn ? this.white_pieces : this.black_pieces;
+
+        for (let piece in pieces) {
+            let moves = piece.generate_moves(this);
+            for (let move in moves) {
+                let clone = this.clone();
+                clone.move(move.x, move.y);
+                boards.push(clone);
+            }
+        }
+
+        return boards;
+    }
 }
