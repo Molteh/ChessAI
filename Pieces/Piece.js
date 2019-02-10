@@ -28,7 +28,7 @@ class Piece {
 
         // if there's already one of my pieces, return false
         const piece_at_position = this.board.getPieceAt(x, y);
-        if (piece_at_position!=null && piece_at_position.is_white() !== this.is_white())
+        if (piece_at_position!=null && piece_at_position.is_white() === this.is_white())
             return false;
 
         // if i'm in check and i'm not breaking it, return false
