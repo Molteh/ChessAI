@@ -103,7 +103,7 @@ class Board {
         let king = Board.getKing((this.white_turn ? this.white_pieces : this.black_pieces));
 
         for (let i = 0; i < pieces.length; i++) {
-            if (pieces[i].check_move_pattern(king.x, king.y, this)) {
+            if (pieces[i].value!==100 && pieces[i].check_move_pattern(king.x, king.y)) {
                 console.log(pieces[i], "can reach you");
                 checkLabel.html("Check");
                 return true;
