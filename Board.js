@@ -54,6 +54,13 @@ class Board {
         }
     }
 
+    static getKing(pieces) {
+        for (let i = 0; i < pieces.length; i++) {
+            if (pieces[i].value === 100)
+                return pieces[i];
+        }
+    }
+
     getPieceAt(x, y) {
         for (let i = 0; i < this.white_pieces.length; i++) {
             if( this.white_pieces[i].x === x && this.white_pieces[i].y === y) {
@@ -91,39 +98,22 @@ class Board {
 
     }
 
-    move(x, y) {
+    is_check() {
+        let pieces = this.white_turn ? this.black_pieces : this.white_pieces;
+        let king = this.getKing((this.white_turn ? this.white_pieces : this.black_pieces));
 
-        console.log(x, y);
-
-        // Check for castling moves
-        if(!this.moving_piece.is_castling(x, y, this)) {
-
-            if ((!this.is_check() && this.moving_piece.can_move(x, y, this)) || (this.is_check() && this.exit_check(x, y))) {
-                console.log("move succesful");
-
-                // Eventually capture enemy piece
-                this.removePieceAt(x, y);
-
-                this.moving_piece.x = x;
-                this.moving_piece.y = y;
-                this.moving_piece.pixel_position.x = x * tile_size + tile_size / 2;
-                this.moving_piece.pixel_position.y = y * tile_size + tile_size / 2;
-
-                // Switch turn
-                this.white_turn = !this.white_turn;
-
-                ///// useful here?
-                if (this.is_check()) {
-
-                }
+        for (let i = 0; i < pieces.length; i++) {
+            if (pieces[i].check_move_pattern(king.x, king.y, this)) {
+                console.log(pieces[i], "can reach you");
+                checkLabel.html("Check");
+                return true;
             }
         }
-        this.moving_piece.is_moving = false;
-        this.moving_piece = null;
-
+        checkLabel.html("");
+        return false;
     }
 
-    exit_check(x, y) {
+    breaks_check(x, y) {
         let clone = this.clone();
         if (clone.moving_piece.can_move(x, y, clone)) {
             // Eventually capture enemy piece
@@ -180,28 +170,6 @@ class Board {
                 return true;
         }
         return false
-    }
-
-    is_check() {
-        let pieces = this.white_turn ? this.black_pieces : this.white_pieces;
-        let king = this.getKing((this.white_turn ? this.white_pieces : this.black_pieces));
-
-        for (let i = 0; i < pieces.length; i++) {
-            if (pieces[i].check_move_pattern(king.x, king.y, this)) {
-                console.log(pieces[i], "can reach you");
-                checkLabel.html("Check");
-                return true;
-            }
-        }
-        checkLabel.html("");
-        return false;
-    }
-
-    getKing(pieces) {
-        for (let i = 0; i < pieces.length; i++) {
-            if (pieces[i].value === 100)
-                return pieces[i];
-        }
     }
 
     clone() {
