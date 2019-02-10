@@ -8,11 +8,6 @@ class Rook extends Piece {
     // Rook can move on files and ranks without trespassing other pieces
     check_move_pattern(x, y) {
 
-        // if there's already one of my pieces, return false
-        const piece_at_position = this.board.getPieceAt(x, y);
-        if (piece_at_position!=null && piece_at_position.is_white() !== this.is_white())
-            return false;
-
         // check if it still on the same file or rank
         if (this.x !== x && this.y !== y)
             return false;

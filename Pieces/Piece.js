@@ -26,6 +26,11 @@ class Piece {
         if (!this.check_move_pattern(x, y))
             return false;
 
+        // if there's already one of my pieces, return false
+        const piece_at_position = this.board.getPieceAt(x, y);
+        if (piece_at_position!=null && piece_at_position.is_white() !== this.is_white())
+            return false;
+
         // if i'm in check and i'm not breaking it, return false
         return !(this.board.is_check() && !this.board.breaks_check(x, y));
     }

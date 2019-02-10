@@ -6,12 +6,6 @@ class Knight extends Piece {
 
     // Knight's moves are L shaped, it can jump over other pieces
     check_move_pattern(x, y) {
-
-        // if there's already one of my pieces, return false
-        const piece_at_position = this.board.getPieceAt(x, y);
-        if (piece_at_position!=null && piece_at_position.is_white() !== this.is_white())
-            return false;
-
         return (Math.abs(x - this.x) === 1 && Math.abs(y - this.y) === 2) ||
             (Math.abs(x - this.x) === 2 && Math.abs(y - this.y) === 1);
     }

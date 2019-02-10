@@ -7,20 +7,20 @@ class King extends Piece {
         this.coord = [];
     }
 
-    check_move_pattern(x, y) {
+    can_move(x,y) {
 
         if(this.is_castling(x,y)) {
             this.castling = true;
-            return true;
         }
 
-        // if there's already one of my pieces, return false
-        const piece_at_position = this.board.getPieceAt(x, y);
-        if (piece_at_position!=null && piece_at_position.is_white() !== this.is_white())
-            return false;
+        return super.can_move(x,y);
+    }
 
+    check_move_pattern(x, y) {
         // check if it's moving by one
-        return !((Math.abs(x - this.x) > 1) || (Math.abs(y - this.y) > 1));
+        if(!this.castling)
+            return !((Math.abs(x - this.x) > 1) || (Math.abs(y - this.y) > 1));
+        return true;
     }
 
 

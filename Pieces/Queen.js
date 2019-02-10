@@ -7,11 +7,6 @@ class Queen extends Piece {
     // Queen can move either on file and ranks or diagonally
     check_move_pattern(x, y) {
 
-        // if there's already one of my pieces, return false
-        const piece_at_position = this.board.getPieceAt(x, y);
-        if (piece_at_position!=null && piece_at_position.is_white() !== this.is_white())
-            return false;
-
         // check if it is following on of the possible patterns
         if (this.x !== x && this.y !== y && Math.abs(this.x - x) !== Math.abs(this.y - y))
             return false;
