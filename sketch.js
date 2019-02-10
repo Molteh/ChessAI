@@ -54,8 +54,8 @@ function mousePressed() {
 
     console.log("Clicked on cell: ", x," - ", y);
     if(game.moving_piece)
-        if(game.moving_piece.can_move(x,y))
-            game.moving_piece.move(x, y);
+        if(game.moving_piece.can_move(x,y, game))
+            game.moving_piece.move(x, y, game);
         else {
             game.moving_piece.is_moving = false;
             game.moving_piece = null;
