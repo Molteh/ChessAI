@@ -100,7 +100,7 @@ class Board {
 
     is_check() {
         let pieces = this.white_turn ? this.black_pieces : this.white_pieces;
-        let king = this.getKing((this.white_turn ? this.white_pieces : this.black_pieces));
+        let king = Board.getKing((this.white_turn ? this.white_pieces : this.black_pieces));
 
         for (let i = 0; i < pieces.length; i++) {
             if (pieces[i].check_move_pattern(king.x, king.y, this)) {

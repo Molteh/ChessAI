@@ -10,7 +10,7 @@ class Rook extends Piece {
 
         // if there's already one of my pieces, return false
         const piece_at_position = this.board.getPieceAt(x, y);
-        if (!piece_at_position && piece_at_position.is_white() !== this.is_white())
+        if (piece_at_position!=null && piece_at_position.is_white() !== this.is_white())
             return false;
 
         // check if it still on the same file or rank
