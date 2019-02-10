@@ -1,4 +1,5 @@
 class Board {
+
     constructor() {
 
         this.check = false;
@@ -8,7 +9,7 @@ class Board {
         this.white_turn = true;
         this.score = 0;
 
-        //setupPieces
+        //setup pieces
         this.white_pieces = [];
         this.black_pieces = [];
         this.setUpPieces()
@@ -56,12 +57,12 @@ class Board {
     }
 
     getPieceAt(x, y) {
-        for (var i = 0; i < this.white_pieces.length; i++) {
+        for (let i = 0; i < this.white_pieces.length; i++) {
             if( this.white_pieces[i].x === x && this.white_pieces[i].y === y) {
                 return this.white_pieces[i];
             }
         }
-        for (i = 0; i < this.black_pieces.length; i++) {
+        for (let i = 0; i < this.black_pieces.length; i++) {
             if( this.black_pieces[i].x === x && this.black_pieces[i].y === y) {
                 return this.black_pieces[i];
             }
@@ -140,7 +141,7 @@ class Board {
     }
 
     hasPieceOnDiagonal(x1, y1, x2, y2) {
-        let start_x = 0, start_y = 0, end = 0;
+        let start_x = 0, start_y = 0;
 
         if ((x1 > x2 && y1 < y2) || (x2 > x1 && y2 < y1)) {
             start_x = Math.min(x2, x1) + 1;

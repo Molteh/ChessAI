@@ -1,9 +1,9 @@
 class Piece {
+
     constructor(x, y, isWhite) {
         this.x = x;
         this.y = y;
         this.isWhite = isWhite;
-        this.value = 0;
         this.sprite = null;
         this.is_moving = false;
         this.pixel_position = createVector(x * tile_size + tile_size / 2, y *
@@ -40,10 +40,6 @@ class Piece {
 
     check_move_pattern(x, y, board) {
         return true;
-    }
-
-    clone() {
-
     }
 
     generate_moves(board) {
