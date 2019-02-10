@@ -7,7 +7,7 @@ class Pawn extends Piece {
 
     // Pawn can only move forward either of one file or of two if it's it first move and capture diagonally
     check_move_pattern(x, y) {
-        
+
         if(!this.isWhite) {
             if ((this.has_moved && y - this.y === 1 && x === this.x && this.board.getPieceAt(x, y) == null)
                 || (!this.has_moved && y - this.y <= 2 && y - this.y > 0 && x === this.x && this.board.getPieceAt(x, y) == null)

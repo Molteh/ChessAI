@@ -58,6 +58,7 @@ function mousePressed() {
             game.moving_piece.move(x, y);
         else {
             game.moving_piece.is_moving = false;
+            game.moving_piece = null;
         }
     else {
         game.moving_piece = game.getPieceAt(x, y);
