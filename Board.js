@@ -1,7 +1,6 @@
 class Board {
 
     constructor() {
-
         this.check = false;
         this.board_length = 8;
         this.board_height = 8;
@@ -13,36 +12,35 @@ class Board {
         this.white_pieces = [];
         this.black_pieces = [];
         this.setUpPieces()
-
     }
 
     setUpPieces() {
 
         //standard game setup
-        this.white_pieces.push(new Rook(0, 7, true));
-        this.white_pieces.push(new Knight(1, 7,true ));
-        this.white_pieces.push(new Bishop(2, 7,true));
-        this.white_pieces.push(new Queen(3, 7, true));
-        this.white_pieces.push(new King(4, 7,  true));
-        this.white_pieces.push(new Bishop(5, 7,true));
-        this.white_pieces.push(new Knight(6, 7,true));
-        this.white_pieces.push(new Rook(7, 7, true));
+        this.white_pieces.push(new Rook(0, 7, true, this));
+        this.white_pieces.push(new Knight(1, 7,true, this ));
+        this.white_pieces.push(new Bishop(2, 7,true, this));
+        this.white_pieces.push(new Queen(3, 7, true, this));
+        this.white_pieces.push(new King(4, 7,  true, this));
+        this.white_pieces.push(new Bishop(5, 7,true, this));
+        this.white_pieces.push(new Knight(6, 7,true, this));
+        this.white_pieces.push(new Rook(7, 7, true, this));
 
         for (let i = 0; i < 8; i++) {
-            this.white_pieces.push(new Pawn(i, 6, true));
+            this.white_pieces.push(new Pawn(i, 6, true, this));
         }
 
-        this.black_pieces.push(new Rook(0, 0,false));
-        this.black_pieces.push(new Knight(1, 0,false ));
-        this.black_pieces.push(new Bishop(2, 0, false));
-        this.black_pieces.push(new Queen(3, 0, false));
-        this.black_pieces.push(new King(4, 0, false));
-        this.black_pieces.push(new Bishop(5, 0, false));
-        this.black_pieces.push(new Knight(6, 0, false));
-        this.black_pieces.push(new Rook(7, 0, false));
+        this.black_pieces.push(new Rook(0, 0,false, this));
+        this.black_pieces.push(new Knight(1, 0,false, this ));
+        this.black_pieces.push(new Bishop(2, 0, false, this));
+        this.black_pieces.push(new Queen(3, 0, false, this));
+        this.black_pieces.push(new King(4, 0, false, this));
+        this.black_pieces.push(new Bishop(5, 0, false, this));
+        this.black_pieces.push(new Knight(6, 0, false, this));
+        this.black_pieces.push(new Rook(7, 0, false, this));
 
         for (let i = 0; i < 8; i++) {
-            this.black_pieces.push(new Pawn(i, 1, false));
+            this.black_pieces.push(new Pawn(i, 1, false, this));
         }
 
     }

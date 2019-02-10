@@ -53,8 +53,8 @@ function mousePressed() {
     let y = ~~(mouseY / tile_size);
 
     console.log("Clicked on cell: ", x," - ", y);
-    if(game.moving_piece) {
-        game.move(x, y);
+    if(game.moving_piece && game.moving_piece.can_move(x,y)) {
+        game.moving_piece.move(x, y);
     } else {
         game.moving_piece = game.getPieceAt(x, y);
         game.moving_piece.is_moving = true;

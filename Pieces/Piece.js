@@ -1,31 +1,51 @@
 class Piece {
 
-    constructor(x, y, isWhite) {
+    constructor(x, y, isWhite, board, sprite, value) {
         this.x = x;
         this.y = y;
+        this.board = board;
         this.isWhite = isWhite;
-        this.sprite = null;
+        this.sprite = sprite;
+        this.value = value;
         this.is_moving = false;
         this.pixel_position = createVector(x * tile_size + tile_size / 2, y *
             tile_size + tile_size / 2);
     }
 
-    can_move(x, y, board) {
+    can_move(x, y) {
 
-        if (board.is_check()) {
-            //check that move out of check
-        }
-        // check if it the right piece color
-        if(this.isWhite !== board.white_turn)
+        // if i'm moving a piece of my opponent, return false
+        if (this.isWhite !== this.board.white_turn)
             return false;
-        // check if moves within board's boundaries
-        if (!this.check_move_pattern(x, y, board) || !board.is_in_boundaries(x, y))
+
+        // if i'm moving outside the board, return false
+        if (!this.board.is_in_boundaries(x, y))
             return false;
-        let piece_at_position = board.getPieceAt(x, y);
-        if (piece_at_position == null)
-            return true;
-        // check whether it would collide with a friendly piece
-        return piece_at_position.is_white() !== this.isWhite;
+
+        // if the move is not valid for that specific piece, return false
+        if (!this.check_move_pattern(x, y))
+            return false;
+
+        // if i'm in check and i'm not breaking it, return false
+        return !(this.board.is_check() && !this.board.breaks_check(x, y));
+    }
+
+    move(x, y) {
+        console.log(x, y);
+
+        // capture enemy piece
+        this.board.removePieceAt(x, y);
+
+        this.x = x;
+        this.y = y;
+        this.pixel_position.x = x * tile_size + tile_size / 2;
+        this.pixel_position.y = y * tile_size + tile_size / 2;
+
+        // switch turn
+        this.board.white_turn = !this.board.white_turn;
+
+        this.is_moving = false;
+        this.board.moving_piece = null;
     }
 
     show() {
@@ -38,16 +58,12 @@ class Piece {
         }
     }
 
-    check_move_pattern(x, y, board) {
+    check_move_pattern(x, y) {
         return true;
     }
 
-    generate_moves(board) {
+    generate_moves() {
 
-    }
-
-    is_castling(x, y, board) {
-        return false;
     }
 
     is_white() {
