@@ -95,10 +95,16 @@ function html_elems_setup() {
     let testGenMoveButton = createButton('Generate moves');
     testGenMoveButton.mousePressed(() => {
         console.log(game.white_turn);
-        for (let i = 0; i < game.white_pieces.length ; i++) {
-            game.white_pieces[i].generate_moves(game);
+        if(game.white_turn) {
+            for (let i = 0; i < game.white_pieces.length; i++) {
+                game.white_pieces[i].generate_moves(game);
+            }
         }
-
+        else {
+            for (let i = 0; i < game.black_pieces.length; i++) {
+                game.black_pieces[i].generate_moves(game);
+            }
+        }
     })
 }
 
