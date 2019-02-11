@@ -67,7 +67,7 @@ class Piece {
         return true;
     }
 
-    generate_moves() {
+    generate_moves(board) {
 
     }
 
