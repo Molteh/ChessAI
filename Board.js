@@ -124,12 +124,13 @@ class Board {
     }
 
     is_checkmate() {
-        let pieces = this.white_turn ? this.white_pieces : this.black_pieces;
+        let pieces = this.white_turn ? this.black_pieces : this.white_pieces;
         for (let piece in pieces) {
             let moves = piece.generate_moves(this);
             if (moves.length > 0)
                 return false;
         }
+        checkLabel.html("Checkmate");
         return true;
     }
 

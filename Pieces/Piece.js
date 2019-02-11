@@ -50,7 +50,7 @@ class Piece {
 
         this.is_moving = false;
         board.moving_piece = null;
-        board.is_check();
+        if(board.is_check()) board.is_checkmate();
     }
 
     show() {
