@@ -115,16 +115,11 @@ class Board {
 
     breaks_check(x, y) {
         let clone = this.clone();
-        if (clone.moving_piece.can_move(x, y, clone)) {
-            // Eventually capture enemy piece
-            clone.removePieceAt(x, y);
-
-            clone.moving_piece.x = x;
-            clone.moving_piece.y = y;
-            clone.moving_piece.pixel_position.x = x * tile_size + tile_size / 2;
-            clone.moving_piece.pixel_position.y = y * tile_size + tile_size / 2;
-        }
-
+        clone.removePieceAt(x, y);
+        clone.moving_piece.x = x;
+        clone.moving_piece.y = y;
+        clone.moving_piece.pixel_position.x = x * tile_size + tile_size / 2;
+        clone.moving_piece.pixel_position.y = y * tile_size + tile_size / 2;
         return !clone.is_check();
     }
 
