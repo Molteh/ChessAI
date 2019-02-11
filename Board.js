@@ -123,6 +123,16 @@ class Board {
         return !clone.is_check(false);
     }
 
+    is_checkmate() {
+        let pieces = this.white_turn ? this.white_pieces : this.black_pieces;
+        for (let piece in pieces) {
+            let moves = piece.generate_moves(this);
+            if (moves.length > 0)
+                return false;
+        }
+        return true;
+    }
+
     hasPieceOnDiagonal(x1, y1, x2, y2) {
         let start_x = 0, start_y = 0;
 

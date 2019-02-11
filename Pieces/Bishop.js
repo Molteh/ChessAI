@@ -33,9 +33,10 @@ class Bishop extends Piece {
         // Generate moves from bottom left to top right diagonal
         for (let j = 0; j < 8; j++) {
             if(this.can_move(x + j, y - j, board))
-                moves.push(new createVector(x + j, y + j));
+                moves.push(new createVector(x + j, y - j));
         }
 
+        console.log(this, moves);
         return moves;
     }
 
