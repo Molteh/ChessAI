@@ -31,7 +31,7 @@ class Piece {
             return false;
 
         // if i'm in check and i'm not breaking it, return false
-        return !(board.is_check() && !board.breaks_check(x, y));
+        return board.breaks_check(x, y)
     }
 
     move(x, y, board) {

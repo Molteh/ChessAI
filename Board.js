@@ -98,14 +98,14 @@ class Board {
 
     }
 
-    is_check() {
+    is_check(flag=true) {
         let pieces = this.white_turn ? this.black_pieces : this.white_pieces;
         let king = Board.getKing((this.white_turn ? this.white_pieces : this.black_pieces));
 
         for (let i = 0; i < pieces.length; i++) {
             if (pieces[i].value!==100 && pieces[i].check_move_pattern(king.x, king.y, this)) {
                 console.log(pieces[i], "can reach you");
-                checkLabel.html("Check");
+                if(flag) checkLabel.html("Check");
                 return true;
             }
         }
@@ -120,7 +120,7 @@ class Board {
         clone.moving_piece.y = y;
         clone.moving_piece.pixel_position.x = x * tile_size + tile_size / 2;
         clone.moving_piece.pixel_position.y = y * tile_size + tile_size / 2;
-        return !clone.is_check();
+        return !clone.is_check(false);
     }
 
     hasPieceOnDiagonal(x1, y1, x2, y2) {
