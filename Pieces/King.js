@@ -3,24 +3,29 @@ class King extends Piece {
     constructor(x, y, isWhite) {
         super(x, y, isWhite, isWhite ? images[0] : images[6], 100);
         this.has_moved = false;
-        this.castling = false;
+        this.todo_castling = false;
+        this.done_castling = false;
         this.coord = [];
     }
 
     can_move(x,y, board) {
 
-        if(this.is_castling(x,y)) {
-            this.castling = true;
+        if(this.is_castling(x,y, board)) {
+            //if i've already done a castling
+            if(this.done_castling)
+                return false;
+            else
+                this.todo_castling = true;
         }
 
-        return super.can_move(x,y);
+        return super.can_move(x,y, board);
     }
 
     check_move_pattern(x, y, board) {
         // check if it's moving by one
-        if(!this.castling)
+        if(!this.todo_castling)
             return !((Math.abs(x - this.x) > 1) || (Math.abs(y - this.y) > 1));
-        return true;
+        else return true;
     }
 
 
@@ -70,9 +75,10 @@ class King extends Piece {
     move(x, y, board) {
 
         //if i have to perform castling
-        if(this.castling) {
+        if(this.todo_castling) {
             King.perform_castling(this.coord[0],this.coord[1],this.coord[2], board);
-            this.castling = false;
+            this.todo_castling = false;
+            this.done_castling = true;
         }
 
         super.move(x,y, board);
