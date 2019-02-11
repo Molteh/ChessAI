@@ -187,7 +187,7 @@ class Board {
             clone.black_pieces.push(this.black_pieces[i].clone());
         }
 
-        clone.moving_piece = clone.getPieceAt(this.moving_piece.x, this.moving_piece.y);
+        clone.moving_piece = this.moving_piece? clone.getPieceAt(this.moving_piece.x, this.moving_piece.y) : null;
 
         return clone;
     }

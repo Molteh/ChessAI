@@ -27,6 +27,7 @@ class Rook extends Piece {
     }
 
     generate_moves(board) {
+        board.moving_piece = this;
         let moves = [];
 
         // Generate horizontal moves

@@ -11,6 +11,7 @@ class Knight extends Piece {
     }
 
     generate_moves(board) {
+        board.moving_piece = this;
         let moves = [];
 
         for (let i = -2; i < 3; i++) {

@@ -97,6 +97,7 @@ class King extends Piece {
 
 
     generate_moves(board) {
+        board.moving_piece = this;
         let moves = [];
         for (let i = -1; i <= 1; i++)
             for(let j = -1; j <= 1; j++){

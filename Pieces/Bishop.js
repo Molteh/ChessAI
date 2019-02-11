@@ -16,6 +16,7 @@ class Bishop extends Piece {
     }
 
     generate_moves(board) {
+        board.moving_piece = this;
         let moves = [];
         let min = Math.min(this.x, this.y);
         let x = this.x - min;
