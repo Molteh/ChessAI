@@ -124,9 +124,10 @@ class Board {
     }
 
     is_checkmate() {
-        let pieces = this.white_turn ? this.black_pieces : this.white_pieces;
+        let clone = this.clone();
+        let pieces = clone.white_turn ? clone.white_pieces : clone.black_pieces;
         for (let i = 0; i < pieces.length; i++) {
-            let moves = pieces[i].generate_moves(this);
+            let moves = pieces[i].generate_moves(clone);
             if (moves.length > 0)
                 return false;
         }

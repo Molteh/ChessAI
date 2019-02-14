@@ -45,12 +45,12 @@ class Piece {
         this.pixel_position.x = x * tile_size + tile_size / 2;
         this.pixel_position.y = y * tile_size + tile_size / 2;
 
+        // switch turn
+        board.white_turn = !board.white_turn;
+
         this.is_moving = false;
         board.moving_piece = null;
         if(board.is_check()) board.is_checkmate();
-
-        // switch turn
-        board.white_turn = !board.white_turn;
     }
 
     show() {
