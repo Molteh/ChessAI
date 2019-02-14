@@ -109,7 +109,7 @@ class Board {
                 return true;
             }
         }
-        checkLabel.html("");
+        if(flag) checkLabel.html("");
         return false;
     }
 
