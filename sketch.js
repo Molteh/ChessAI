@@ -28,6 +28,15 @@ function draw() {
     show_board();
     update_score();
     game.show();
+
+    runAI()
+}
+
+function runAI() {
+    if (game.white_turn === false) {
+        console.log('Minimax comes in action');
+        game = minimax_alpha_beta(game);
+    }
 }
 
 function show_board() {

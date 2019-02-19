@@ -209,11 +209,26 @@ class Board {
         let boards = [];
         let pieces = this.white_turn ? this.white_pieces : this.black_pieces;
 
-        for (let piece in pieces) {
-            let moves = piece.generate_moves(this);
-            for (let move in moves) {
+        console.log(pieces);
+
+        for (let i = 0; i < pieces.length ; i++) {
+            console.log('piece: ',pieces[i]);
+
+            let moves = pieces[i].generate_moves(this);
+
+            console.log('moves: ', moves);
+            for (let j = 0; j < moves.length ; j++) {
                 let clone = this.clone();
-                clone.move(move.x, move.y);
+                console.log('board clone: ' , clone);
+                console.log('selected piece: ', clone.moving_piece);
+                console.log('Move ' ,moves[j]);
+
+                clone.moving_piece.move(moves[j].x, moves[j].y, clone);
+
+                console.log('Move successful');
+                console.log('board clone: ' , clone);
+                console.log('selected piece: ', clone.moving_piece);
+                //clone.move(moves[i].x, moves[i].y);
                 boards.push(clone);
             }
         }
